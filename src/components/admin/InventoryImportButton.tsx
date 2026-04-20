@@ -80,7 +80,7 @@ export default function InventoryImportButton({ products, onComplete }: Inventor
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
-      complete: async (results) => {
+      complete: async (results: any) => {
         try {
           const adminUser = localStorage.getItem('adminUser') || 'Bulk Import';
           const res = await fetch('/api/inventory/import', {
