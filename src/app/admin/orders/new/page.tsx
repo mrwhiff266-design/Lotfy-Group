@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -34,7 +35,7 @@ interface CustomerResult {
   status?: string;
 }
 
-export default function NewOrderPage() {
+function PageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -413,5 +414,12 @@ export default function NewOrderPage() {
         </Button>
       </form>
     </div>
+  );
+}
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PageContent />
+    </Suspense>
   );
 }
